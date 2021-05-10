@@ -1,7 +1,6 @@
 const Koa = require("koa");
 const Router = require("koa-router");
 const koaBody = require("koa-body");
-const User = require('./models/user.js')
 
 const app = new Koa();
 const router = new Router();
@@ -10,10 +9,26 @@ const PORT = 3000;
 app.use(koaBody());
 app.use(router.routes());
 
-var 
+const knex = require("knex")({
+  client: "mysql2",
+  connection: {
+    host: "127.0.0.1",
+    user: "root",
+    password: "wellk4mp",
+    database: "bookshelf_metrics",
+    charset: "utf8",
+  },
+});
+const bookshelf = require("bookshelf")(knex);
 
-router.get("/users", (ctx) => {
-  ctx.body = "Testando servidor";
+// Defining models
+const User = bookshelf.model("User", {
+  tableName: "users",
+});
+
+router.get("/users", async (ctx) => {
+  const users = await User.query();
+  ctx.body = users;
 });
 
 app.listen(PORT, () => console.log(`Servidor está rodando na porta ${PORT}`));
