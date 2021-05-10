@@ -14,7 +14,7 @@ const knex = require("knex")({
   connection: {
     host: "127.0.0.1",
     user: "root",
-    password: "PASS",
+    password: "wellk4mp",
     database: "bookshelf_metrics",
     charset: "utf8",
   },
@@ -29,6 +29,10 @@ const User = bookshelf.model("User", {
 router.get("/users", async (ctx) => {
   const users = await User.query();
   ctx.body = users;
+});
+
+router.post("/users", (ctx) => {
+  console.log(ctx.request.body);
 });
 
 app.listen(PORT, () => console.log(`Servidor está rodando na porta ${PORT}`));
