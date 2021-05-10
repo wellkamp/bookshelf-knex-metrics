@@ -4,9 +4,8 @@ module.exports = {
   client: "mysql2",
   connection: {
     database: "bookshelf_metrics",
-    user: "username",
-    password: "wellkamp",
-    filename: "./dev.sqlite3",
+    user: "root",
+    password: "pass",
   },
   pool: {
     min: 2,
