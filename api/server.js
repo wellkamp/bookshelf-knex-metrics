@@ -14,7 +14,7 @@ const knex = require("knex")({
   connection: {
     host: "127.0.0.1",
     user: "root",
-    password: "wellk4mp",
+    password: "pass",
     database: "bookshelf_metrics",
     charset: "utf8",
   },
