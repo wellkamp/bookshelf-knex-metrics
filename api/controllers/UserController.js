@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const koaBody = require("koa-body");
 
 class UserController {
   static async index(ctx) {
@@ -11,16 +12,15 @@ class UserController {
   }
 
   static async create(ctx) {
+    let { first_name, last_name, email, password_hash } = ctx.request.body;
+    console.log(ctx.request.body);
     try {
-      let { first_name, last_name, email, password_hash } = ctx.request.body;
-
       const user = await User.forge({
         first_name: first_name,
         last_name: last_name,
         email: email,
         password_hash: password_hash,
       }).save();
-
       ctx.body = user;
     } catch (err) {
       ctx.throw(500, err);
