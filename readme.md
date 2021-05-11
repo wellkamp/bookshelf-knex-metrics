@@ -2,7 +2,7 @@ API utilizando koa, knex, bookshelf
 
 ```bash
 # Clone este repositório
-$ git clone <https://github.com/wellkamp/bookshelf-knex-metrics.git>
+$ git clone https://github.com/wellkamp/bookshelf-knex-metrics.git
 
 # Acesse a pasta do projeto no terminal
 $ cd bookshelf-knex-metrics
