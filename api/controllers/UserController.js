@@ -26,6 +26,22 @@ class UserController {
       ctx.throw(500, err);
     }
   }
+
+  static async show(ctx) {
+    let { id } = ctx.params;
+    try {
+      await User.where({ id: id })
+        .fetch({ require: true })
+        .then((user) => {
+          ctx.body = user;
+        })
+        .catch((err) => {
+          ctx.body = "Usuario não encontrado";
+        });
+    } catch (err) {
+      ctx.throw(500, err);
+    }
+  }
 }
 
 module.exports = UserController;
