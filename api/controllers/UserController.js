@@ -42,6 +42,38 @@ class UserController {
       ctx.throw(500, err);
     }
   }
+
+  static async update(ctx) {
+    const { body } = ctx.request;
+    console.log(body.first_name, body.last_name, body.password_hash);
+    try {
+      const user = await User.where({ id: ctx.params.id }).save({
+        first_name: body.first_name,
+        last_name: body.last_name,
+        email: body.email,
+        password_hash: body.password_hash,
+      });
+      ctx.body = user;
+    } catch (err) {
+      ctx.throw(400, "Campo duplicado");
+    }
+  }
+
+  static async delete(ctx) {
+    const { body } = ctx.request;
+    console.log(body.first_name, body.last_name, body.password_hash);
+    try {
+      const user = await User.where({ id: ctx.params.id }).save({
+        first_name: body.first_name,
+        last_name: body.last_name,
+        email: body.email,
+        password_hash: body.password_hash,
+      });
+      ctx.body = user;
+    } catch (err) {
+      ctx.throw(400, "Campo duplicado");
+    }
+  }
 }
 
 module.exports = UserController;
