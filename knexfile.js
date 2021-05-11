@@ -5,7 +5,7 @@ module.exports = {
   connection: {
     database: "bookshelf_metrics",
     user: "root",
-    password: "wellk4mp",
+    password: "pass",
   },
   pool: {
     min: 2,
