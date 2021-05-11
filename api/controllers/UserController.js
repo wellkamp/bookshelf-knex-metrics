@@ -45,30 +45,25 @@ class UserController {
 
   static async update(ctx) {
     const { body } = ctx.request;
-    console.log(body.first_name, body.last_name, body.password_hash);
     try {
-      const user = await User.where({ id: ctx.params.id }).save({
-        first_name: body.first_name,
-        last_name: body.last_name,
-        email: body.email,
-        password_hash: body.password_hash,
-      });
+      const user = await User.where({ id: ctx.params.id }).save(
+        {
+          first_name: body.first_name,
+          last_name: body.last_name,
+          email: body.email,
+          password_hash: body.password_hash,
+        },
+        { patch: true }
+      );
       ctx.body = user;
     } catch (err) {
-      ctx.throw(400, "Campo duplicado");
+      ctx.throw(400, err);
     }
   }
 
   static async delete(ctx) {
-    const { body } = ctx.request;
-    console.log(body.first_name, body.last_name, body.password_hash);
     try {
-      const user = await User.where({ id: ctx.params.id }).save({
-        first_name: body.first_name,
-        last_name: body.last_name,
-        email: body.email,
-        password_hash: body.password_hash,
-      });
+      const user = await User.where({ id: ctx.params.id }).destroy();
       ctx.body = user;
     } catch (err) {
       ctx.throw(400, "Campo duplicado");
